@@ -1,12 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Res } from '@nestjs/common';
+import { impresionService } from './impresion';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly impresionService: impresionService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+    @Get()
+    impresion(@Res() res) {
+        res.send('NestJS Printer App is running');
+    }
+
+    @Get('/print')
+    async print(@Res() res) {
+        await this.impresionService.impresion();
+        //res.send('Print job executed');
+    }
+
 }
