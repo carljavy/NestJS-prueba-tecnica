@@ -1,11 +1,13 @@
 import { Injectable } from "@nestjs/common";
-import { printerServices } from "./printer/printerServices";
+import { ImpresionService } from "./printer/ticketPrinterServices";
 
 const urlpath = "";
 
 @Injectable() // to make the class injectable
-export class ImpresionService {
+export class FetchingService {
     
+    constructor( private readonly ImpresionService: ImpresionService ) {}
+
     async impresion() {
 
         console.log("Extracting data for printing...");
@@ -23,7 +25,7 @@ export class ImpresionService {
                 console.log("data extracted with exit :)")
 
                 console.log("Initializing printer service...");
-                this.print(data.slice(0, 10)); // Extracting only first 10 for testing
+                await this.ImpresionService.print(data.slice(0, 10)); // Extracting only first 10 for testing
 
             } else if ( !data.length ) {
                 console.log("data extraction empoty :(")
@@ -35,46 +37,4 @@ export class ImpresionService {
         }
         
     }
-
-    private async print(cancellations) {
-
-        let service = printerServices();
-        const printer = service.getPrinter();
-
-        const isConected = printer.isPrinterConnected();
-        console.log("Printer connected", isConected);
-
-        if( cancellations.length > 0 ) {
-            printer.print("cancellations ready to print")
-        } else {
-            printer.print("no cancellations to print")
-        }
-        
-        
-        printer.cut();
-
-        try {
-            await printer.execute();
-            console.log("Print job sent successfully");
-        } catch (error) {
-            console.error("Error sending print job", error);
-        }
-    }
-
 }
-
-
-        
-//     const isConected = printer.isPrinterConnected();
-//     console.log("Printer connected", isConected);
-
-//     printer.print("test impresion")
-//     printer.cut();
-
-//     try {
-//         await printer.execute();
-//         console.log("Print job sent successfully");
-//     } catch (error) {
-//         console.error("Error sending print job", error);
-//     }
-

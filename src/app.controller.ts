@@ -1,9 +1,10 @@
 import { Controller, Get, Res } from '@nestjs/common';
-import { ImpresionService } from './impresion';
+import { FetchingService } from './impresion';
 
+//controller with endpoints to handle requests
 @Controller()
 export class AppController {
-    constructor(private readonly impresionService: ImpresionService) {}
+    constructor(private readonly fethingServices: FetchingService) {}
 
     @Get()
     impresion(@Res() res) {
@@ -12,11 +13,14 @@ export class AppController {
 
     @Get('/print')
     async print() {
-        await this.impresionService.impresion();
+        await this.fethingServices.impresion();
         //res.send('Print job executed');
 
+        //to stop the request hanging
         return{
+            //statusCode: 200,
             status: 'success',
+            //message to indicate print job execution
             message: 'Print job executed'
         }
     }
