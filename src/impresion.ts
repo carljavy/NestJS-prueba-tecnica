@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ImpresionService } from "./entities/services/ticketPrinterServices";
+import { formateDates } from "./reports/libs/dates";
 
 const urlpath = "";
 
@@ -21,11 +22,14 @@ export class FetchingService {
 
             const data = await cuentas.json();
 
+            const periodDate = data[0].createdAt
+            const formateDate = formateDates(periodDate)
+
             if( data.length > 0 ) {
                 console.log("data extracted with exit :)")
 
                 console.log("Initializing printer service...");
-                await this.ImpresionService.print(data.slice(0, 10)); // Extracting only first 10 for testing
+                await this.ImpresionService.print(data.slice(0, 10), formateDate.actualDayANDHour); // Extracting only first 10 for testing
 
             } else if ( !data.length ) {
                 console.log("data extraction empoty :(")

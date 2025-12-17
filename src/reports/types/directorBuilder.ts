@@ -11,7 +11,7 @@ export class DirectorBuilder {
         this.builder.setTitle("Cancelaciones")
                     //.setPeriodDate()
                     .setUser("User")
-                    //.setCurrentDate()
+                    .setCurrentDate()
 
         
     }

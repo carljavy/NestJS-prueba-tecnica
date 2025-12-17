@@ -1,4 +1,5 @@
 import { Report } from './report';
+import { formateDates } from '../libs/dates';
 
 export class ReportBuilder {
     private report: Report;
@@ -17,9 +18,14 @@ export class ReportBuilder {
         return this;
     }
 
-    public setDate(date: Date): ReportBuilder {
+    public setDate(date: string): ReportBuilder {
         this.report.date = date;
         return this;
+    }
+
+    public setCurrentDate(): ReportBuilder {
+        this.report.date = formateDates().actualDayANDHour
+        return this
     }
 
     public setSellType(selltype: string): ReportBuilder {
@@ -27,13 +33,13 @@ export class ReportBuilder {
         return this;
     }
 
-    public setPeriodDate(periodDate: Date): ReportBuilder {
-        this.report.periodDate = periodDate;
+    public setPeriodDetauil(periodDetail: string): ReportBuilder {
+        this.report.periodDetail = periodDetail;
         return this;
     }
 
     public setTotalOrders(totalOrders: number): ReportBuilder {
-        this.report.totalOrders
+        this.report.totalOrders = totalOrders;
         return this;
     }
 

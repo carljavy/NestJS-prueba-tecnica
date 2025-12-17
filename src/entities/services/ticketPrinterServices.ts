@@ -1,10 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { printerServices } from "./printerServices";
+import { formateDates } from "src/reports/libs/dates";
 
 //Service to handle printing tasks
 @Injectable()
 export class ImpresionService {
-    async print(cancellations) {
+    async print(cancellations, formateDate) {
 
         //create new printer service instance
         let service = printerServices();
@@ -17,6 +18,14 @@ export class ImpresionService {
         //test to check if there are cancellations and the printer is working
         if( cancellations.length > 0 ) {
             printer.print("cancellations ready to print")
+            printer.newLine()
+            printer.print(formateDates().actualDay)
+            printer.newLine()
+            printer.print(formateDates().actualHour)
+            printer.newLine()
+            printer.print(formateDates().actualDayANDHour)
+            printer.newLine()
+            printer.print(formateDate)
         } else {
             printer.print("no cancellations to print")
         }
