@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { ImpresionService } from "./printer/ticketPrinterServices";
+import { ImpresionService } from "./entities/services/ticketPrinterServices";
 
 const urlpath = "";
 
