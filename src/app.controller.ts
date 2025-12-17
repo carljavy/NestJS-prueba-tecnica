@@ -1,9 +1,9 @@
 import { Controller, Get, Res } from '@nestjs/common';
-import { impresionService } from './impresion';
+import { ImpresionService } from './impresion';
 
 @Controller()
 export class AppController {
-    constructor(private readonly impresionService: impresionService) {}
+    constructor(private readonly impresionService: ImpresionService) {}
 
     @Get()
     impresion(@Res() res) {
@@ -11,9 +11,14 @@ export class AppController {
     }
 
     @Get('/print')
-    async print(@Res() res) {
+    async print() {
         await this.impresionService.impresion();
         //res.send('Print job executed');
+
+        return{
+            status: 'success',
+            message: 'Print job executed'
+        }
     }
 
 }
