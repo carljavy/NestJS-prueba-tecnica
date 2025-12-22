@@ -7,13 +7,23 @@ export class DirectorBuilder {
         this.builder = reportBuilder;
     }
 
-    async cancelationsReport(orders, printer){
+    async cancelationsReport(orders, printer, formatDate, userRequested){
         this.builder.setTitle("Cancelaciones")
-                    //.setPeriodDate()
-                    .setUser("User")
+                    .setPeriodDetail(formatDate)
+                    .setUser(userRequested)
                     .setCurrentDate()
 
-        
+        this.builder.printHeader(printer)
+
+        this.executePrint(printer)
+    }
+
+    executePrint(printer){
+        printer.cut()
+
+        printer.execute()
+        console.log("Print executed successfully completed")
+
     }
 
 

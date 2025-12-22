@@ -1,11 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { printerServices } from "./printerServices";
 import { formateDates } from "src/reports/libs/dates";
+import { ReportBuilder } from "src/reports/types/reportBuilder";
+import { DirectorBuilder } from "src/reports/types/directorBuilder";
 
 //Service to handle printing tasks
 @Injectable()
 export class ImpresionService {
-    async print(cancellations, formateDate) {
+    async print(cancellations, formateDates, userRequested) {
 
         //create new printer service instance
         let service = printerServices();
@@ -17,28 +19,26 @@ export class ImpresionService {
 
         //test to check if there are cancellations and the printer is working
         if( cancellations.length > 0 ) {
-            printer.print("cancellations ready to print")
-            printer.newLine()
-            printer.print(formateDates().actualDay)
-            printer.newLine()
-            printer.print(formateDates().actualHour)
-            printer.newLine()
-            printer.print(formateDates().actualDayANDHour)
-            printer.newLine()
-            printer.print(formateDate)
+            
+            const builder = new ReportBuilder();
+
+            const directorBuilder = new DirectorBuilder(builder);
+
+            directorBuilder.cancelationsReport(cancellations, printer, formateDates, userRequested)
+
         } else {
             printer.print("no cancellations to print")
         }
         
         
-        printer.cut();
+        // printer.cut();
 
-        try {
-            await printer.execute();
-            console.log("Print job sent successfully");
-        } catch (error) {
-            console.error("Error sending print job", error);
-        }
+        // try {
+        //     await printer.execute();
+        //     console.log("Print job sent successfully");
+        // } catch (error) {
+        //     console.error("Error sending print job", error);
+        // }
 
     }
 }

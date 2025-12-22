@@ -24,12 +24,13 @@ export class FetchingService {
 
             const periodDate = data[0].createdAt
             const formateDate = formateDates(periodDate)
+            const userRequested = "1001 Alejandro A"
 
             if( data.length > 0 ) {
                 console.log("data extracted with exit :)")
 
                 console.log("Initializing printer service...");
-                await this.ImpresionService.print(data.slice(0, 10), formateDate.actualDayANDHour); // Extracting only first 10 for testing
+                await this.ImpresionService.print(data.slice(0, 10), formateDate.actualDay, userRequested); // Extracting only first 10 for testing
 
             } else if ( !data.length ) {
                 console.log("data extraction empoty :(")

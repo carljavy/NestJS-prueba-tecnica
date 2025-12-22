@@ -1,5 +1,6 @@
 import { Report } from './report';
 import { formateDates } from '../libs/dates';
+import { headerTemplate } from '../templates/headerTemplate';
 
 export class ReportBuilder {
     private report: Report;
@@ -33,9 +34,14 @@ export class ReportBuilder {
         return this;
     }
 
-    public setPeriodDetauil(periodDetail: string): ReportBuilder {
+    public setPeriodDetail(periodDetail: string): ReportBuilder {
         this.report.periodDetail = periodDetail;
         return this;
+    }
+
+    printHeader(printer){
+        const report = this.build();
+        headerTemplate(printer, report)
     }
 
     public setTotalOrders(totalOrders: number): ReportBuilder {
