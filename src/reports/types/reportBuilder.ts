@@ -1,6 +1,7 @@
 import { Report } from './report';
 import { formateDates } from '../libs/dates';
 import { headerTemplate } from '../templates/headerTemplate';
+import { footerTemplate } from '../templates/footerTemplate';
 
 export class ReportBuilder {
     private report: Report;
@@ -44,6 +45,10 @@ export class ReportBuilder {
         headerTemplate(printer, report)
     }
 
+    async printFoooter(printer){
+        await footerTemplate(printer)
+    }
+
     public setTotalOrders(totalOrders: number): ReportBuilder {
         this.report.totalOrders = totalOrders;
         return this;
@@ -54,10 +59,8 @@ export class ReportBuilder {
         return this;
     }
 
-    //printHeader
     //printOrders
     //printTotalOrders
-    //printFooter
 
     public build(): Report {
         return this.report;

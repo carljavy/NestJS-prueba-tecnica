@@ -29,16 +29,6 @@ export class ImpresionService {
         } else {
             printer.print("no cancellations to print")
         }
-        
-        
-        // printer.cut();
-
-        // try {
-        //     await printer.execute();
-        //     console.log("Print job sent successfully");
-        // } catch (error) {
-        //     console.error("Error sending print job", error);
-        // }
 
     }
 }

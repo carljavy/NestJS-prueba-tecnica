@@ -15,6 +15,10 @@ export class DirectorBuilder {
 
         this.builder.printHeader(printer)
 
+        await this.builder.printFoooter(printer)
+
+        
+
         this.executePrint(printer)
     }
 
