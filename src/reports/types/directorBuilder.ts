@@ -15,6 +15,8 @@ export class DirectorBuilder {
 
         this.builder.printHeader(printer)
 
+        this.builder.printOrders(printer, orders)
+
         await this.builder.printFoooter(printer)
 
         

@@ -2,6 +2,7 @@ import { Report } from './report';
 import { formateDates } from '../libs/dates';
 import { headerTemplate } from '../templates/headerTemplate';
 import { footerTemplate } from '../templates/footerTemplate';
+import { printOrderTemplate } from '../templates/orderTemplate';
 
 export class ReportBuilder {
     private report: Report;
@@ -43,6 +44,10 @@ export class ReportBuilder {
     printHeader(printer){
         const report = this.build();
         headerTemplate(printer, report)
+    }
+
+    printOrders(printer, orders){
+        printOrderTemplate(printer, orders)
     }
 
     async printFoooter(printer){

@@ -1,5 +1,3 @@
-import { resolve } from "path";
-
 export async function footerTemplate(printer) {
 
     printer.newLine();
@@ -9,6 +7,6 @@ export async function footerTemplate(printer) {
         await printer.printImage('./assets/footerpng.png');
     } catch (error){
         console.error("Error", error)
-        console.log("no entre al try")
     }
+    
 }
