@@ -1,5 +1,7 @@
 //import { tables } from ''
 
+import { formatOrders } from "../libs/formatOrders"
+
 export function printOrderTemplate(printer, orders){
 
     //all types to order
@@ -24,8 +26,8 @@ export function printOrderTemplate(printer, orders){
         printer.newLine()
 
         //funcion para imprimir ordenes
-        //tables(orderType[i], orders, printer)
-
+        formatOrders(type.key, orders, printer)
+        
     }
 
 }

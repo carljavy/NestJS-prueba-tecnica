@@ -7,7 +7,7 @@ const urlpath = "";
 @Injectable() // to make the class injectable
 export class FetchingService {
     
-    constructor( private readonly ImpresionService: ImpresionService ) {}
+    constructor( private ImpresionService: ImpresionService ) {}
 
     async impresion() {
 
@@ -30,7 +30,7 @@ export class FetchingService {
                 console.log("data extracted with exit :)")
 
                 console.log("Initializing printer service...");
-                await this.ImpresionService.print(data.slice(0, 10), formateDate.actualDay, userRequested); // Extracting only first 10 for testing
+                await this.ImpresionService.print(data.slice(-10), formateDate.actualDay, userRequested); // Extracting only first 10 for testing
 
             } else if ( !data.length ) {
                 console.log("data extraction empoty :(")
