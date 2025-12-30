@@ -17,9 +17,9 @@ export class DirectorBuilder {
 
         this.builder.printOrders(printer, orders)
 
-        await this.builder.printFoooter(printer)
+        this.builder.printerTotalAmount(printer, orders)
 
-        
+        await this.builder.printFoooter(printer)
 
         this.executePrint(printer)
     }

@@ -4,9 +4,8 @@ export class Report {
     public date: string | null = null;
     public selltype: string | null = null;
     public periodDetail: string | null = null;
-    public totalOrders: number | null = null;
-    public totalOrdersAmount: number | null = null;
 
+    
     constructor(){}
 
 }

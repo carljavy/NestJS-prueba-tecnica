@@ -3,6 +3,7 @@ import { formateDates } from '../libs/dates';
 import { headerTemplate } from '../templates/headerTemplate';
 import { footerTemplate } from '../templates/footerTemplate';
 import { printOrderTemplate } from '../templates/orderTemplate';
+import { totalCancelations } from '../templates/totalCancelations';
 
 export class ReportBuilder {
     private report: Report;
@@ -54,18 +55,19 @@ export class ReportBuilder {
         await footerTemplate(printer)
     }
 
-    public setTotalOrders(totalOrders: number): ReportBuilder {
-        this.report.totalOrders = totalOrders;
-        return this;
-    }
+    printerTotalAmount(printer, orders){
+        let total = 0
+        let monto = 0
+        let i = 0
 
-    public setTotalOrdersAmount(totalOrdersAmount: number): ReportBuilder {
-        this.report.totalOrdersAmount = totalOrdersAmount;
-        return this;
-    }
+        for(i; i < orders.length; i++){
+            total++;
+            monto += parseFloat(orders[i].accountId.checkTotal);
+        }
 
-    //printOrders
-    //printTotalOrders
+        totalCancelations(printer, total, monto)
+
+    }
 
     public build(): Report {
         return this.report;

@@ -30,7 +30,9 @@ export class FetchingService {
                 console.log("data extracted with exit :)")
 
                 console.log("Initializing printer service...");
-                await this.ImpresionService.print(data.slice(-10), formateDate.actualDay, userRequested); // Extracting only first 10 for testing
+                // the first 10 have problems
+                // Extracting the last 10 for testing
+                await this.ImpresionService.print(data.slice(-10), formateDate.actualDay, userRequested); 
 
             } else if ( !data.length ) {
                 console.log("data extraction empoty :(")
